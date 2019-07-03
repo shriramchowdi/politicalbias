@@ -2,8 +2,8 @@ import tweepy
 import csv
 
 #Twitter API credentials
-consumer_key = "ceiXBaV5gMikK4dTfK2oHcLhJ"
-consumer_secret = "C4T95spYBsNKMW0ykdNxbViBCaw9exf7kQxDDBuV7i1I04KSc6"
+consumer_key = ""
+consumer_secret = ""
 access_key = ""
 access_secret = ""
 
