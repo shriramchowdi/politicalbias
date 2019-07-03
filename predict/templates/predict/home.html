@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style> 
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+ 
+}
+
+input[type=text]:focus {
+  border: 3px solid #555;
+}
+
+form{
+	position: fixed;
+	top: 50%;
+	left: 50%;
+ 	transform: translate(-50%, -50%);	
+}
+</style>
+</head>
+<body>
+
+
+<form method="get">
+  <label for="fname" id = "label1">Enter the twitter username of the person</label>
+  <input type="text" id="uname" name="uname">
+  <button type="submit" name="action" onclick="change(event)">SEND</button>
+</form>
+
+<script type="text/javascript">
+  function change(event){
+  	event.preventDefault();
+    var xhr = new XMLHttpRequest();
+      username = document.getElementById("uname").value;
+      console.log(username)
+      xhr.open('GET', 'check/'+username, true);
+
+      xhr.onload = function(){
+        if(this.status == 200){
+        	json = JSON.parse(this.responseText);
+        	if (json.status == false){
+        		document.getElementById('label1').innerHTML = 'Please enter valid username';
+        	} else if (json.bias == "right"){
+        		document.body.style.background = "orange";
+        	} else if (json.bias == "left"){
+        		document.body.style.background = "red";
+        	} else {
+        		document.body.style.background = "blue";
+        	}
+        }
+      }
+
+      xhr.send();
+    
+  }
+</script>
+</body>
+</html>
